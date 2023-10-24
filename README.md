@@ -6,3 +6,5 @@ This should provide a good starting path to using pystray, tk and ttkbootstrap i
 License: GPL Version 3.0 or Later
 
 See the 'deps.txt' file for package requirements.
+
+![screen_shot.png](screen_shot.png)
