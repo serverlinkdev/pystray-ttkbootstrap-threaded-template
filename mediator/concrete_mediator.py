@@ -33,11 +33,17 @@ class ConcreteMediator(Mediator):
     - Call in to this class using 'notify' method.
     """
 
+    _app_name = None
     _main_window = None
     _systray = None
 
-    def __init__(self):
+    def __init__(self, app_name):
+        """
+        Args:
+            app_name (str): the name of the app to be used by the OS
+        """
         super().__init__()
+        self._app_name = app_name
 
     def notify(self, sender, event):
 
@@ -55,7 +61,7 @@ class ConcreteMediator(Mediator):
         """
         Starts the Systray class.
         """
-        self._systray = Systray()
+        self._systray = Systray(self._app_name)
         self._systray.mediator = self
         self._systray.notify("ConcreteMediator", "START")
 
@@ -63,6 +69,6 @@ class ConcreteMediator(Mediator):
         """
         Starts the MainWindow class
         """
-        self._main_window = MainWindow()
+        self._main_window = MainWindow(self._app_name)
         self._main_window.mediator = self
         self._main_window.notify("ConcreteMediator", "START")

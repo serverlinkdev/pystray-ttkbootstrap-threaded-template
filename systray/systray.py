@@ -38,15 +38,21 @@ class Systray(BaseComponent):
     - Call in to this class using 'notify' method.
     """
 
+    _app_name = None
     _image = None
     mediator = None
     _menu = None
     _systray = None
 
-    def __init__(self):
+    def __init__(self, app_name):
+        """
+        Args:
+            app_name (str): the name of the app to be used by the OS
+        """
         super().__init__()
         # by default, PIL is chatty.
         logging.getLogger('PIL').setLevel(logging.WARNING)
+        self._app_name = app_name
         self._create_tray()
 
     def notify(self, sender, event):
@@ -64,7 +70,10 @@ class Systray(BaseComponent):
         self._menu = (
             item('Quit', self._quit_main_window),
             item('Show', self._show_main_window))
-        self._systray = pystray.Icon("name", self._image, "title", self._menu)
+        self._systray = pystray.Icon("name",
+                                     self._image,
+                                     self._app_name,
+                                     self._menu)
 
     def _quit_main_window(self):
         """

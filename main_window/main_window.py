@@ -38,12 +38,18 @@ class MainWindow(BaseComponent):
     - Call in to this class using 'notify' method.
     """
 
+    _app_name = None
     _global_font = None
     mediator = None
     _window = None
 
-    def __init__(self):
+    def __init__(self, app_name):
+        """
+        Args:
+            app_name (str): the name of the app to be used by the OS
+        """
         super().__init__()
+        self._app_name = app_name
         signal.signal(signal.SIGINT, self._quit)
 
     def notify(self, sender, event):
@@ -71,7 +77,7 @@ class MainWindow(BaseComponent):
         Build the MainWindow
         """
         self._window = ttk.Window(themename="darkly")
-        self._window.title("My Tray App Template")
+        self._window.title(self._app_name)
         self._create_window_icon()
         self._set_global_font_defaults()
         self._create_start_button()
