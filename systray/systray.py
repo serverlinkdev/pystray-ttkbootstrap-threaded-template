@@ -38,20 +38,23 @@ class Systray(BaseComponent):
     - Call in to this class using 'notify' method.
     """
 
+    _app_icon = None
     _app_name = None
     _image = None
     mediator = None
     _menu = None
     _systray = None
 
-    def __init__(self, app_name):
+    def __init__(self, app_icon, app_name):
         """
         Args:
-            app_name (str): the name of the app to be used by the OS
+        app_icon (str): the icon you want to see in your desktop OS
+        app_name (str): the name of the app you want to see in OS notification's
         """
         super().__init__()
         # by default, PIL is chatty.
         logging.getLogger('PIL').setLevel(logging.WARNING)
+        self._app_icon = app_icon
         self._app_name = app_name
         self._create_tray()
 
@@ -66,7 +69,7 @@ class Systray(BaseComponent):
         Build the Systray
         """
         # smile icon from breeze icon theme ubuntu 23.10
-        self._image = Image.open("smile.png")
+        self._image = Image.open(self._app_icon)
         self._menu = (
             item('Quit', self._quit_main_window),
             item('Show', self._show_main_window))

@@ -67,20 +67,22 @@ def _start_logging(debug_on):
     logger.info("Main: Starting up!")
 
 
-def start(debug_on, app_name):
+def start(debug_on, app_icon, app_name):
     """
     Starts the entire application.
 
     Args:
         debug_on (str): True, False
-        app_name (str): the name of the app to be used by the OS
+        app_icon (str): the icon you want to see in your desktop OS
+        app_name (str): the name of the app you want to see in OS notification's
     """
     _start_logging(debug_on)
-    _cm = ConcreteMediator(app_name=app_name)
+    _cm = ConcreteMediator(app_icon=app_icon, app_name=app_name)
     _cm.notify("Main", "START")
 
 
 if __name__ == '__main__':
     # App will completely shut down when you use "Quit" from the system tray
     start(debug_on=True,
+          app_icon="smile.png",
           app_name="Pystray TTK Tutorial")

@@ -33,16 +33,19 @@ class ConcreteMediator(Mediator):
     - Call in to this class using 'notify' method.
     """
 
+    _app_icon = None
     _app_name = None
     _main_window = None
     _systray = None
 
-    def __init__(self, app_name):
+    def __init__(self, app_icon, app_name):
         """
         Args:
-            app_name (str): the name of the app to be used by the OS
+        app_icon (str): the icon you want to see in your desktop OS
+        app_name (str): the name of the app you want to see in OS notification's
         """
         super().__init__()
+        self._app_icon = app_icon
         self._app_name = app_name
 
     def notify(self, sender, event):
@@ -61,7 +64,7 @@ class ConcreteMediator(Mediator):
         """
         Starts the Systray class.
         """
-        self._systray = Systray(self._app_name)
+        self._systray = Systray(self._app_icon, self._app_name)
         self._systray.mediator = self
         self._systray.notify("ConcreteMediator", "START")
 
