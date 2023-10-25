@@ -36,17 +36,20 @@ class ConcreteMediator(Mediator):
     _app_icon = None
     _app_name = None
     _main_window = None
+    _style = None
     _systray = None
 
-    def __init__(self, app_icon, app_name):
+    def __init__(self, app_icon, app_name, style):
         """
         Args:
         app_icon (str): the icon you want to see in your desktop OS
         app_name (str): the name of the app you want to see in OS notification's
+        style (str): the ttkbootstrap style for the application
         """
         super().__init__()
         self._app_icon = app_icon
         self._app_name = app_name
+        self._style = style
 
     def notify(self, sender, event):
 
@@ -72,6 +75,6 @@ class ConcreteMediator(Mediator):
         """
         Starts the MainWindow class
         """
-        self._main_window = MainWindow(self._app_name)
+        self._main_window = MainWindow(self._app_name, self._style)
         self._main_window.mediator = self
         self._main_window.notify("ConcreteMediator", "START")

@@ -31,7 +31,7 @@ def _start_logging(debug_on):
     Configure the logging of this application
 
     Args:
-        debug_on (str): True, False
+        debug_on (bool): True, False
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
     log_file_path = os.path.join(script_dir, "logfile.log")
@@ -67,17 +67,20 @@ def _start_logging(debug_on):
     logger.info("Main: Starting up!")
 
 
-def start(debug_on, app_icon, app_name):
+def start(debug_on, app_icon, app_name, style):
     """
     Starts the entire application.
 
     Args:
-        debug_on (str): True, False
+        debug_on (bool): True, False
         app_icon (str): the icon you want to see in your desktop OS
         app_name (str): the name of the app you want to see in OS notification's
+        style (str): the ttkbootstrap style for the application
     """
     _start_logging(debug_on)
-    _cm = ConcreteMediator(app_icon=app_icon, app_name=app_name)
+    _cm = ConcreteMediator(app_icon=app_icon,
+                           app_name=app_name,
+                           style=style)
     _cm.notify("Main", "START")
 
 
@@ -85,4 +88,5 @@ if __name__ == '__main__':
     # App will completely shut down when you use "Quit" from the system tray
     start(debug_on=True,
           app_icon="smile.png",
-          app_name="Pystray TTK Tutorial")
+          app_name="Pystray TTK Tutorial",
+          style="darkly")
