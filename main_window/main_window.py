@@ -23,6 +23,7 @@ import signal
 import ttkbootstrap as ttk
 import tkinter.font as tkFont
 
+from ttkbootstrap import Style
 from ttkbootstrap.constants import *
 from mediator import BaseComponent
 from PIL import Image, ImageTk
@@ -42,17 +43,18 @@ class MainWindow(BaseComponent):
     _global_font = None
     mediator = None
     _style = None
+    _theme = None
     _window = None
 
-    def __init__(self, app_name, style):
+    def __init__(self, app_name, theme):
         """
         Args:
             app_name (str): the name of the app to be used by the OS
-            style (str): the ttkbootstrap style for the application
+            theme (str): the ttkbootstrap theme for the application
         """
         super().__init__()
         self._app_name = app_name
-        self._style = style
+        self._theme = theme
         signal.signal(signal.SIGINT, self._quit)
 
     def notify(self, sender, event):
@@ -79,8 +81,14 @@ class MainWindow(BaseComponent):
         """
         Build the MainWindow
         """
-        self._window = ttk.Window(themename=self._style)
+        self._window = ttk.Window(themename=self._theme)
         self._window.title(self._app_name)
+        # While having a handle to the current Style isn't really used in this
+        # app, having this is variable in our template helps, so that if we
+        # change things for events in a _real_app_ we can revert with:
+        #       self._style.theme_use(themename=self._theme)
+        # Some things might need tweaking, but saves a lot of work.
+        self._style = Style()
         self._create_window_icon()
         self._set_global_font_defaults()
         self._create_start_button()

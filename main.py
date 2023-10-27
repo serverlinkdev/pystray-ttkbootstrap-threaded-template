@@ -67,7 +67,7 @@ def _start_logging(debug_on):
     logger.info("Main: Starting up!")
 
 
-def start(debug_on, app_icon, app_name, style):
+def start(debug_on, app_icon, app_name, theme):
     """
     Starts the entire application.
 
@@ -75,12 +75,12 @@ def start(debug_on, app_icon, app_name, style):
         debug_on (bool): True, False
         app_icon (str): the icon you want to see in your desktop OS
         app_name (str): the name of the app you want to see in OS notification's
-        style (str): the ttkbootstrap style for the application
+        theme (str): the ttkbootstrap theme for the application
     """
     _start_logging(debug_on)
     _cm = ConcreteMediator(app_icon=app_icon,
                            app_name=app_name,
-                           style=style)
+                           theme=theme)
     _cm.notify("Main", "START")
 
 
@@ -89,4 +89,7 @@ if __name__ == '__main__':
     start(debug_on=True,
           app_icon="smile.png",
           app_name="Pystray TTK Tutorial",
-          style="darkly")
+          theme="darkly")
+
+# themes from:
+# https://ttkbootstrap.readthedocs.io/en/version-0.5/themes.html
