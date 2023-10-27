@@ -70,7 +70,7 @@ class MainWindow(BaseComponent):
 
     def _create_start_button(self):
         """
-        Builds and add a button to the MainWindow
+        Build and add a button to the MainWindow
         """
         start_button = ttk.Button(self._window, text="Start Task",
                                   command=self._start_task,
