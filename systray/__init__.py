@@ -1,2 +1,0 @@
-from .systray import Systray
-

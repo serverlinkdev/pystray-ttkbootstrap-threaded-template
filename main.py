@@ -23,7 +23,7 @@ import os
 import sys
 
 from colorlog import ColoredFormatter
-from mediator import ConcreteMediator
+from mediator.concrete_mediator import ConcreteMediator
 
 
 def _start_logging(debug_on):

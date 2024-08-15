@@ -18,9 +18,9 @@ pystray-ttkbootstrap-threaded-template:
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
-from main_window import MainWindow
-from mediator import Mediator
-from systray import Systray
+from main_window.main_window import MainWindow
+from mediator.mediator import Mediator
+from systray_pystray.systray import Systray
 
 
 class ConcreteMediator(Mediator):

@@ -25,7 +25,7 @@ import pystray
 from PIL import Image
 from pystray import MenuItem as item
 
-from mediator import BaseComponent
+from mediator.base_component import BaseComponent
 
 
 class Systray(BaseComponent):
