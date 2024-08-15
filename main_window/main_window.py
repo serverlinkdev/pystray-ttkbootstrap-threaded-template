@@ -25,7 +25,7 @@ import tkinter.font as tkFont
 
 from ttkbootstrap import Style
 from ttkbootstrap.constants import *
-from mediator import BaseComponent
+from mediator.base_component import BaseComponent
 from PIL import Image, ImageTk
 
 
